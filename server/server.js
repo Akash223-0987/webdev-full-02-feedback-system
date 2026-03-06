@@ -52,7 +52,7 @@ app.post('/api/feedback', async (req, res) => {
 
 app.get('/api/feedback', async (req, res) => {
   try {
-    const feedbacks = await Feedback.find().sort({ createdAt: 1 });
+    const feedbacks = await Feedback.find().sort({ createdAt: -1 });
     
     res.json({
       success: true,
@@ -74,7 +74,7 @@ app.put('/api/feedback/:id', async (req, res) => {
   try {
     const { name, email, message, rating } = req.body;
     
-    const feedback = await Feedback.findByidAndupdate(
+    const feedback = await Feedback.findByIdAndUpdate(
       req.params.id,
       { name, email, message, rating },
       { new: true }
